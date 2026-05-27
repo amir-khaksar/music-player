@@ -10,7 +10,7 @@ const App = () => {
             <Sidebar />
             <div className="flex flex-1 flex-col">
                 <Topbar />
-                <main className="overflow-y-auto p-6 pb-32">
+                <main className="overflow-y-auto p-6 pb-28">
                     <SearchGrid
                         tracks={tracks}
                         albums={albums}
