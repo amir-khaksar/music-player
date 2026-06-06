@@ -16,3 +16,27 @@ exports.getAll = async (req, res) => {
         });
     }
 };
+
+exports.getOne = async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const { data, error } = await supabase
+            .from("songs")
+            .select("*")
+            .eq("id", id)
+            .single();
+
+        if (error) {
+            return res.status(404).json({
+                message: error.message,
+            });
+        }
+
+        return res.json(data);
+    } catch (err) {
+        return res.status(500).json({
+            message: err.message,
+        });
+    }
+};
