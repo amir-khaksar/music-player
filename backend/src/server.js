@@ -1,17 +1,15 @@
+const { default: mongoose } = require("mongoose");
+const app = require("./app");
+
 require("dotenv").config();
 
-const express = require("express");
-const cors = require("cors");
+const port = process.env.PORT || 3000;
 
-const songsRouter = require("./routes/songs");
+(async () => {
+    await mongoose.connect(process.env.MONGO_URI);
+    console.log("MOngoDB Connected");
+})();
 
-const app = express();
-
-app.use(cors());
-app.use(express.json());
-
-app.use("/api/songs", songsRouter);
-
-app.listen(process.env.PORT, () => {
-    console.log(`Server running on ${process.env.PORT}`);
+app.listen(prompt, () => {
+    console.log(`Server Running on port 3000`);
 });

@@ -5,7 +5,7 @@ const {
     deleteOne,
     uploadOne,
     createSong,
-} = require("./../controller/songs");
+} = require("../controllers/songs");
 const upload = require("../configs/multer");
 
 const router = express.Router();
