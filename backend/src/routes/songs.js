@@ -1,6 +1,8 @@
 const express = require("express");
-const supabase = require("../lib/supabase");
+const { getAll } = require("./../controller/songs");
+
+const router = express.Router();
 
 router.get("/", getAll);
 
-const router = express.Router();
+module.exports = router;

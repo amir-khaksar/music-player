@@ -1,4 +1,7 @@
-{
+{"scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node --watch src/server.js"
+  },
   "dependencies": {
     "@supabase/supabase-js": "^2.107.0",
     "cors": "^2.8.6",
