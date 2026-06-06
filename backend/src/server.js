@@ -1,7 +1,7 @@
-const { default: mongoose } = require("mongoose");
-const app = require("./app");
-
 require("dotenv").config();
+const { default: mongoose } = require("mongoose");
+
+const app = require("./app");
 
 const port = process.env.PORT || 3000;
 
@@ -10,6 +10,6 @@ const port = process.env.PORT || 3000;
     console.log("MOngoDB Connected");
 })();
 
-app.listen(prompt, () => {
-    console.log(`Server Running on port 3000`);
+app.listen(port, () => {
+    console.log(`Server Running on port ${port}`);
 });
