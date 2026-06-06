@@ -40,3 +40,17 @@ exports.getOne = async (req, res) => {
         });
     }
 };
+
+exports.deleteOne = async (req, res) => {
+    const { id } = req.params;
+
+    const { error } = await supabase.from("songs").delete().eq("id", id);
+
+    if (error) {
+        return res.status(500).json(error);
+    }
+
+    res.json({
+        message: "Music Deleted!",
+    });
+};
