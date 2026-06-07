@@ -5,11 +5,6 @@ const app = require("./app");
 
 const port = process.env.PORT || 3000;
 
-(async () => {
-    await mongoose.connect(process.env.MONGO_URI);
-    console.log("MOngoDB Connected");
-})();
-
 app.listen(port, () => {
     console.log(`Server Running on port ${port}`);
 });
