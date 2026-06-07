@@ -2,14 +2,36 @@ const supabase = require("../lib/supabase");
 
 exports.getAll = async (req, res) => {
     try {
-        const { data, error } = await supabase
+        const { search = "", page = 1, limit = 20 } = req.query;
+
+        const from = (Number(page) - 1) * Number(limit);
+        const to = from + Number(limit) - 1;
+
+        let query = supabase
             .from("songs")
-            .select("*")
-            .order("id", { ascending: false });
+            .select("*", { count: "exact" })
+            .order("id", { ascending: false })
+            .range(from, to);
+
+        if (search.trim()) {
+            query = query.or(
+                `title.ilike.%${search}%,artist.ilike.%${search}%`,
+            );
+        }
+
+        const { data, count, error } = await query;
 
         if (error) throw error;
 
-        res.json(data);
+        res.status(200).json({
+            songs: data,
+            pagination: {
+                total: count,
+                page: Number(page),
+                limit: Number(limit),
+                totalPages: Math.ceil(count / Number(limit)),
+            },
+        });
     } catch (err) {
         res.status(500).json({
             message: err.message,
@@ -102,4 +124,83 @@ exports.deleteOne = async (req, res) => {
     res.json({
         message: "Music Deleted!",
     });
+};
+
+exports.likeSong = async (req, res) => {
+    try {
+        const { songId } = req.params;
+
+        const {
+            data: { user },
+        } = await supabase.auth.getUser(req.token);
+
+        const { data, error } = await supabase
+            .from("liked_songs")
+            .insert({
+                user_id: user.id,
+                song_id: songId,
+            })
+            .select()
+            .single();
+
+        if (error) throw error;
+
+        res.status(201).json(data);
+    } catch (err) {
+        res.status(500).json({
+            message: err.message,
+        });
+    }
+};
+
+exports.unlikeSong = async (req, res) => {
+    try {
+        const { songId } = req.params;
+
+        const {
+            data: { user },
+        } = await supabase.auth.getUser(req.token);
+
+        const { error } = await supabase
+            .from("liked_songs")
+            .delete()
+            .eq("user_id", user.id)
+            .eq("song_id", songId);
+
+        if (error) throw error;
+
+        res.json({
+            message: "Song unliked",
+        });
+    } catch (err) {
+        res.status(200).json({
+            message: "Song unliked",
+        });
+    }
+};
+
+exports.getLikedSongs = async (req, res) => {
+    try {
+        const {
+            data: { user },
+        } = await supabase.auth.getUser(req.token);
+
+        const { data, error } = await supabase
+            .from("liked_songs")
+            .select(
+                `
+        song_id,
+        songs (*)
+      `,
+            )
+            .eq("user_id", user.id);
+
+        if (error) throw error;
+
+        res.json(data);
+    } catch (err) {
+        res.status(500).json({
+            message: err.message,
+        });
+    }
 };

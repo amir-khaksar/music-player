@@ -5,6 +5,9 @@ const {
     deleteOne,
     uploadOne,
     createSong,
+    getLikedSongs,
+    likeSong,
+    unlikeSong,
 } = require("../controllers/songs");
 const upload = require("../configs/multer");
 
@@ -15,5 +18,9 @@ router.get("/:id", getOne);
 router.post("/", createSong);
 router.post("/upload", upload.single("audio"), uploadOne);
 router.delete("/:id", deleteOne);
+// like
+router.get("/likes", getLikedSongs);
+router.post("/songs/:songId/like", likeSong);
+router.delete("/songs/:songId/like", unlikeSong);
 
 module.exports = router;
