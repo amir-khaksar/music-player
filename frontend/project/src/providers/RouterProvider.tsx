@@ -17,7 +17,7 @@ const router = createBrowserRouter([
         element: <NotFound />,
     },
     {
-        path: "music-player",
+        path: "home",
         element: <MusicPlayer />,
     },
     {

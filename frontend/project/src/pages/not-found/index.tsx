@@ -7,9 +7,9 @@ export default function NotFound() {
     return (
         <div className="min-h-screen bg-neutral-950 flex items-center justify-center p-6 relative overflow-hidden">
             {/* Glow orbs */}
-            <div className="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-emerald-500/20 blur-3xl pointer-events-none" />
-            <div className="absolute -bottom-24 -right-24 w-80 h-80 rounded-full bg-emerald-500/10 blur-3xl pointer-events-none" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 rounded-full bg-emerald-400/5 blur-3xl pointer-events-none" />
+            <div className="absolute -top-20 -left-20 w-96 h-96 rounded-full bg-emerald-500/20 blur-3xl pointer-events-none" />
+            <div className="absolute -bottom-16 -right-16 w-72 h-72 rounded-full bg-emerald-500/10 blur-3xl pointer-events-none" />
+            <div className="absolute top-1/2 right-1/4 w-48 h-48 rounded-full bg-emerald-400/10 blur-2xl pointer-events-none" />
 
             <div className="relative z-10 flex flex-col items-center text-center max-w-md">
                 {/* 404 glass card */}
