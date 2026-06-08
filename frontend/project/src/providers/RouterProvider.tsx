@@ -2,7 +2,7 @@ import {
     createBrowserRouter,
     RouterProvider as ReactRouterProvider,
 } from "react-router-dom";
-import Register from "../pages/Register/index";
+import Register from "../pages/Auth/index";
 import MusicPlayer from "../pages/music-player/index";
 
 const router = createBrowserRouter([
