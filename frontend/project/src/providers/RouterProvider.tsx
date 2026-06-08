@@ -2,21 +2,22 @@ import {
     createBrowserRouter,
     RouterProvider as ReactRouterProvider,
 } from "react-router-dom";
-import Register from "../pages/Auth/index";
+import Auth from "../pages/Auth/index";
 import MusicPlayer from "../pages/music-player/index";
+import NotFound from "../pages/not-found";
 
 const router = createBrowserRouter([
     {
         path: "*",
-        element: "hello",
+        element: <NotFound />,
     },
     {
         path: "music-player",
         element: <MusicPlayer />,
     },
     {
-        path: "/register",
-        element: <Register />,
+        path: "/auth",
+        element: <Auth />,
     },
 ]);
 
