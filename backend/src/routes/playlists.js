@@ -6,6 +6,7 @@ const {
     deletePlaylist,
     removeSongFromPlaylist,
 } = require("../controllers/playlists");
+const { protect } = require("../middlewares/auth");
 
 const router = express.Router();
 

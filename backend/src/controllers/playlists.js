@@ -1,4 +1,4 @@
-const supabase = require("@supabase/supabase-js");
+const supabase = require("./../lib/supabaseAdmin");
 
 exports.createPlaylist = async (req, res) => {
     try {
@@ -14,7 +14,7 @@ exports.createPlaylist = async (req, res) => {
         const { data, error } = await supabase
             .from("playlists")
             .insert({
-                user_id: user.id,
+                user_id: id,
                 name,
             })
             .select()

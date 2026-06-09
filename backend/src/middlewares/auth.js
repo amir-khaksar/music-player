@@ -1,8 +1,9 @@
+const supabase = require("./../lib/supabaseAdmin");
+
 exports.protect = async (req, res, next) => {
     const authHeader = req.headers.authorization;
 
     const token = authHeader?.split(" ")[1];
-    console.log("Token:", token);
 
     const {
         data: { user },
@@ -11,7 +12,7 @@ exports.protect = async (req, res, next) => {
 
     if (error || !user) {
         return res.status(401).json({
-            message: "Unauthorized",
+            message: error ? error.message : "Unauthorized",
         });
     }
 
