@@ -5,12 +5,6 @@ exports.createPlaylist = async (req, res) => {
         const { name } = req.body;
         const { id } = req.user;
 
-        if (userError) {
-            return res.status(401).json({
-                message: "Unauthorized",
-            });
-        }
-
         const { data, error } = await supabase
             .from("playlists")
             .insert({
