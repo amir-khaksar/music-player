@@ -23,6 +23,8 @@ export const tracks: Track[] = [
         album: "Midnight Echoes",
         image: "https://picsum.photos/400?5",
         duration: 212,
+        audio_url:
+            "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
     },
     {
         id: "t2",
@@ -31,5 +33,7 @@ export const tracks: Track[] = [
         album: "City Lights",
         image: "https://picsum.photos/400?6",
         duration: 185,
+        audio_url:
+            "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
     },
 ];

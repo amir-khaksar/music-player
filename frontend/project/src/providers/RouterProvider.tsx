@@ -4,7 +4,7 @@ import {
     RouterProvider as ReactRouterProvider,
 } from "react-router-dom";
 import Auth from "../pages/Auth/index";
-import MusicPlayer from "../pages/music-player/index";
+import MusicPlayer from "../pages/home/index";
 import NotFound from "../pages/not-found";
 
 const router = createBrowserRouter([
