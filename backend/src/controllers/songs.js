@@ -130,14 +130,12 @@ exports.likeSong = async (req, res) => {
     try {
         const { songId } = req.params;
 
-        const {
-            data: { user },
-        } = await supabase.auth.getUser(req.token);
+        const { id } = req.user;
 
         const { data, error } = await supabase
             .from("liked_songs")
             .insert({
-                user_id: user.id,
+                user_id: id,
                 song_id: songId,
             })
             .select()
@@ -157,14 +155,12 @@ exports.unlikeSong = async (req, res) => {
     try {
         const { songId } = req.params;
 
-        const {
-            data: { user },
-        } = await supabase.auth.getUser(req.token);
+        const { id } = req.user;
 
         const { error } = await supabase
             .from("liked_songs")
             .delete()
-            .eq("user_id", user.id)
+            .eq("user_id", id)
             .eq("song_id", songId);
 
         if (error) throw error;
@@ -181,9 +177,7 @@ exports.unlikeSong = async (req, res) => {
 
 exports.getLikedSongs = async (req, res) => {
     try {
-        const {
-            data: { user },
-        } = await supabase.auth.getUser(req.token);
+        const { id } = req.user;
 
         const { data, error } = await supabase
             .from("liked_songs")
@@ -193,7 +187,7 @@ exports.getLikedSongs = async (req, res) => {
         songs (*)
       `,
             )
-            .eq("user_id", user.id);
+            .eq("user_id", id);
 
         if (error) throw error;
 

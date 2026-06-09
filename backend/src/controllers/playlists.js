@@ -3,10 +3,7 @@ const supabase = require("@supabase/supabase-js");
 exports.createPlaylist = async (req, res) => {
     try {
         const { name } = req.body;
-        const {
-            data: { user },
-            error: userError,
-        } = await supabase.auth.getUser(req.token);
+        const { id } = req.user;
 
         if (userError) {
             return res.status(401).json({
@@ -35,14 +32,12 @@ exports.createPlaylist = async (req, res) => {
 
 exports.getMyPlaylists = async (req, res) => {
     try {
-        const {
-            data: { user },
-        } = await supabase.auth.getUser(req.token);
+        const { id } = req.user;
 
         const { data, error } = await supabase
             .from("playlists")
             .select("*")
-            .eq("user_id", user.id);
+            .eq("user_id", id);
 
         if (error) throw error;
 
