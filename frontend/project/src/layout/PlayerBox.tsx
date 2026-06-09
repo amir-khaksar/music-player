@@ -1,6 +1,7 @@
+import { useState } from "react";
 import type { Track } from "../types/media";
 import ProgressBar from "../components/ProgressBar";
-import { SkipForward } from "lucide-react";
+import { Play, SkipForward } from "lucide-react";
 import { Pause, Volume2, Shuffle, SkipBack } from "lucide-react";
 
 interface Props {
@@ -8,6 +9,8 @@ interface Props {
 }
 
 const PlayerBar = ({ track }: Props) => {
+    const [isPlaying, setIsPlaying] = useState<boolean>(true);
+
     return (
         <div className="fixed bottom-0 left-0 right-0 bg-neutral-900/70 backdrop-blur-2xl border-t border-neutral-800 px-2 py-1 flex items-center justify-center gap-x-8">
             <div className="flex items-center gap-4">
@@ -30,7 +33,17 @@ const PlayerBar = ({ track }: Props) => {
                         <SkipBack size={16} />
                     </button>
                     <button className="bg-emerald-500 w-10 h-10 rounded-full flex items-center justify-center cursor-pointer">
-                        <Pause size={16} />
+                        {isPlaying ? (
+                            <Pause
+                                size={16}
+                                onClick={() => setIsPlaying(false)}
+                            />
+                        ) : (
+                            <Play
+                                size={16}
+                                onClick={() => setIsPlaying(true)}
+                            />
+                        )}
                     </button>
                     <button className="cursor-pointer">
                         <SkipForward size={16} />
@@ -58,7 +71,7 @@ const PlayerBar = ({ track }: Props) => {
                         />
                     </div>
                 </div>
-                <Shuffle size={16} />
+                <Shuffle size={16} className="cursor-pointer" />
             </div>
         </div>
     );
