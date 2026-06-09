@@ -1,7 +1,7 @@
 import AuthButton from "../../../components/AuthButton";
 import Field from "../../../components/Field";
 import { useForm } from "react-hook-form";
-import { useLogin } from "../hooks/useLogin,";
+import { useLogin } from "../hooks/useLogin";
 
 type LoginFormData = {
     email: string;
