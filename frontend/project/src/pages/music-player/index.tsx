@@ -1,7 +1,7 @@
 import { tracks, albums } from "../../data/mockData";
 import Sidebar from "./../../layout/SideBar";
 import Topbar from "../../layout/TopBar";
-import PlayerBar from "./../../layout/PlayerBox";
+import PlayerBar from "../../layout/PlayerBar";
 import SearchGrid from "./../../components/SearchGrid";
 
 export default function index() {

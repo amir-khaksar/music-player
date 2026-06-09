@@ -12,4 +12,5 @@ export interface Track {
     album: string;
     image: string;
     duration: number;
+    audio_url: string;
 }
