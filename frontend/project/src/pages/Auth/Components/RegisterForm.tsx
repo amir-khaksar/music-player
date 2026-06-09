@@ -2,7 +2,6 @@ import { useForm } from "react-hook-form";
 import AuthButton from "../../../components/AuthButton";
 import Field from "../../../components/Field";
 import { useRegister } from "../hooks/useRegister";
-import { useNavigate } from "react-router-dom";
 
 type RegisterFormData = {
     email: string;
@@ -10,8 +9,6 @@ type RegisterFormData = {
 };
 
 export default function RegisterForm() {
-    const navigate = useNavigate();
-
     const registerMutation = useRegister();
 
     const {
@@ -22,7 +19,6 @@ export default function RegisterForm() {
 
     const onSubmit = (data: RegisterFormData) => {
         registerMutation.mutate(data);
-        navigate("/home");
     };
 
     return (

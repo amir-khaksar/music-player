@@ -18,7 +18,6 @@ export default function LoginForm() {
     } = useForm<LoginFormData>();
 
     const onSubmit = (data: LoginFormData) => {
-        console.log(data);
         loginMutation.mutate(data);
     };
 
