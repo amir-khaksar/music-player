@@ -1,9 +1,29 @@
 import AuthButton from "../../../components/AuthButton";
 import Field from "../../../components/Field";
+import { useForm } from "react-hook-form";
+import { useLogin } from "../hooks/useLogin,";
+
+type LoginFormData = {
+    email: string;
+    password: string;
+};
 
 export default function LoginForm() {
+    const loginMutation = useLogin();
+
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm<LoginFormData>();
+
+    const onSubmit = (data: LoginFormData) => {
+        console.log(data);
+        loginMutation.mutate(data);
+    };
+
     return (
-        <div className="flex flex-col gap-4">
+        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
             <div className="mb-1">
                 <h2 className="text-white/90 text-lg font-medium">
                     welcome back
@@ -13,8 +33,29 @@ export default function LoginForm() {
                 </p>
             </div>
 
-            <Field label="Email" type="email" placeholder="you@example.com" />
-            <Field label="password" type="password" placeholder="••••••••" />
+            <Field
+                label="Email"
+                type="email"
+                placeholder="you@example.com"
+                {...register("email", { required: "Email is required" })}
+            />
+
+            {errors.email && (
+                <p className="text-red-500 text-sm">{errors.email.message}</p>
+            )}
+
+            <Field
+                label="password"
+                type="password"
+                placeholder="••••••••"
+                {...register("password", { required: "Password is required" })}
+            />
+
+            {errors.password && (
+                <p className="text-red-500 text-sm">
+                    {errors.password.message}
+                </p>
+            )}
 
             <div className="flex items-center gap-2">
                 <input
@@ -27,7 +68,7 @@ export default function LoginForm() {
                 </label>
             </div>
 
-            <AuthButton label="login" />
-        </div>
+            <AuthButton label="login" disabled={loginMutation.isPending} />
+        </form>
     );
 }

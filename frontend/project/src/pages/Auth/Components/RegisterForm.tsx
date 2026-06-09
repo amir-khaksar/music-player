@@ -71,7 +71,7 @@ export default function RegisterForm() {
 
             <AuthButton
                 label="register"
-                // disabled={registerMutation.isPending}
+                disabled={registerMutation.isPending}
             />
         </form>
     );

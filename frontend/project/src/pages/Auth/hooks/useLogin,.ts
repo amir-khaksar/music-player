@@ -10,5 +10,11 @@ export const useLogin = () => {
             email: string;
             password: string;
         }) => signIn(email, password),
+        onSuccess: (data) => {
+            console.log("Login successful:", data);
+        },
+        onError: (error) => {
+            console.error("Login failed:", error);
+        },
     });
 };
