@@ -1,13 +1,18 @@
 import type { Track } from "../types/media";
 import { Play } from "lucide-react";
-
+import { useNavigate } from "react-router-dom";
 interface Props {
     track: Track;
 }
 
 const TrackCard = ({ track }: Props) => {
+    const navigate = useNavigate();
+
     return (
-        <div className="group bg-neutral-900 p-4 rounded-2xl hover:bg-neutral-800 transition relative shadow-lg">
+        <div
+            onClick={() => navigate(`music/${track.id}`)}
+            className="group bg-neutral-900 p-4 rounded-2xl hover:bg-neutral-800 transition relative shadow-lg cursor-pointer"
+        >
             <div className="relative">
                 <img
                     src={track.cover_url}
