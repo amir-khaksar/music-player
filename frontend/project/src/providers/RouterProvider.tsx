@@ -6,6 +6,7 @@ import {
 import Auth from "../pages/Auth/index";
 import MusicPlayer from "../pages/home/index";
 import NotFound from "../pages/not-found";
+import SongDetail from "../pages/songDetail";
 
 const router = createBrowserRouter([
     {
@@ -17,8 +18,12 @@ const router = createBrowserRouter([
         element: <NotFound />,
     },
     {
-        path: "home",
+        path: "discover",
         element: <MusicPlayer />,
+    },
+    {
+        path: "discover/music/:id",
+        element: <SongDetail />,
     },
     {
         path: "/auth",
