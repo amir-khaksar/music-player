@@ -10,7 +10,7 @@ const TrackCard = ({ track }: Props) => {
         <div className="group bg-neutral-900 p-4 rounded-2xl hover:bg-neutral-800 transition relative shadow-lg">
             <div className="relative">
                 <img
-                    src={track.image}
+                    src={track.cover_url}
                     alt={track.title}
                     className="rounded-xl mb-4"
                 />

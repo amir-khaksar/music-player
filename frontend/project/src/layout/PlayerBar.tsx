@@ -61,7 +61,7 @@ const PlayerBar = ({ track }: Props) => {
 
             <div className="flex items-center gap-4">
                 <img
-                    src={track.image}
+                    src={track.cover_url}
                     alt={track.title}
                     className="w-14 h-14 rounded-xl"
                 />
