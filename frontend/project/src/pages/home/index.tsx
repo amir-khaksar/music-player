@@ -12,7 +12,9 @@ export default function index() {
     return (
         <div className="flex h-screen bg-neutral-950 text-neutral-100">
             {isLoading ? (
-                <Loading />
+                <div className="mx-auto">
+                    <Loading />
+                </div>
             ) : (
                 <>
                     <Sidebar />
