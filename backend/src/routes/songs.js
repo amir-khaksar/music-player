@@ -13,6 +13,8 @@ const upload = require("../configs/multer");
 const { protect } = require("../middlewares/auth");
 
 const router = express.Router();
+router.post("/upload", upload.single("audio"), uploadOne);
+
 router.get("/", getAll);
 
 router.get("/likes", protect, getLikedSongs);
@@ -24,8 +26,6 @@ router.delete("/:songId/like", protect, unlikeSong);
 router.get("/:id", getOne);
 
 router.post("/", createSong);
-
-router.post("/upload", upload.single("audio"), uploadOne);
 
 router.delete("/:id", deleteOne);
 
