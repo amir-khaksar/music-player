@@ -7,6 +7,7 @@ import PlayerBar from "../../layout/PlayerBar";
 import NotFound from "../not-found";
 import { useState } from "react";
 import { useLikeSong } from "./hooks/useLikeSong";
+import { useGetLikedSongs } from "./hooks/useGetLikedSongs";
 
 function formatDuration(seconds: number) {
     const m = Math.floor(seconds / 60);
@@ -19,8 +20,10 @@ export default function SongDetail() {
 
     const { id } = useParams();
     const navigate = useNavigate();
+
     const { data: song, isLoading } = useGetSong(id!);
     const { mutate: likeSong } = useLikeSong();
+    const { data: likedSongs } = useGetLikedSongs();
 
     const { setTrack, playToggle, track, isPlaying } = usePlayer();
 
@@ -37,10 +40,12 @@ export default function SongDetail() {
 
     const clickHandler = () => {
         setLike((prev) => !prev);
-        likeSong(song.id);
+        if (!like) {
+            likeSong(song.id);
+        }
     };
 
-    console.log(like);
+    const isLiked = likedSongs?.some((s: any) => s.song_id === song.id);
 
     return (
         <div>
@@ -76,7 +81,7 @@ export default function SongDetail() {
                             >
                                 <Heart
                                     size={16}
-                                    fill={`${like && "#00B96B"}`}
+                                    fill={`${isLiked ? "#00B96B" : "none"}`}
                                 />
                             </button>
                             <button
