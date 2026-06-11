@@ -27,8 +27,6 @@ export default function SongDetail() {
     const { mutate: unlikeSong } = useUnlikeSong();
     const { data: likedSongs } = useGetLikedSongs();
 
-    console.log(likedSongs);
-
     const { setTrack, playToggle, track, isPlaying } = usePlayer();
 
     if (isLoading) return <Loading />;
