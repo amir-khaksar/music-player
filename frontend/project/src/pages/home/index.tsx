@@ -1,4 +1,3 @@
-import { albums } from "../../data/mockData";
 import Sidebar from "./../../layout/SideBar";
 import Topbar from "../../layout/TopBar";
 import PlayerBar from "../../layout/PlayerBar";
@@ -21,10 +20,10 @@ export default function index() {
                     <div className="flex flex-1 flex-col">
                         <Topbar />
                         <main className="overflow-y-auto p-6 pb-32">
-                            <SearchGrid tracks={tracks.songs} albums={albums} />
+                            <SearchGrid tracks={tracks.songs} />
                         </main>
                     </div>
-                    <PlayerBar track={tracks.songs[1]} />
+                    <PlayerBar />
                 </>
             )}
         </div>
