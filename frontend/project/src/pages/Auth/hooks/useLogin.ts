@@ -22,7 +22,7 @@ export const useLogin = () => {
                 message: `Welcome back, ${data.user?.email}!`,
             });
             setTimeout(() => {
-                navigate("/home");
+                navigate("/discover");
             }, 1500);
         },
         onError: () => {

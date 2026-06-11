@@ -23,7 +23,7 @@ export const useRegister = () => {
                 title: "Registration successful",
                 message: `Welcome, ${data.user?.email}! Your account has been created.`,
             });
-            navigate("/home");
+            navigate("/discover");
         },
         onError: (error) => {
             console.error("Registration failed:", error);
