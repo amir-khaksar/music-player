@@ -21,13 +21,13 @@ const TrackCard = ({ track }: Props) => {
 
     return (
         <div
-            onClick={() => navigate(`music/${track.id}`)}
+            onClick={() => navigate(`music/${track?.id}`)}
             className="group bg-neutral-900 p-4 rounded-2xl hover:bg-neutral-800 transition relative shadow-lg cursor-pointer"
         >
             <div className="relative">
                 <img
-                    src={track.cover_url}
-                    alt={track.title}
+                    src={track?.cover_url}
+                    alt={track?.title}
                     className="rounded-xl mb-4 w-full"
                 />
                 <button
@@ -37,8 +37,8 @@ const TrackCard = ({ track }: Props) => {
                     <Play size={16} />
                 </button>
             </div>
-            <div className="font-semibold">{track.title}</div>
-            <div className="text-sm text-neutral-400">{track.artist}</div>
+            <div className="font-semibold">{track?.title}</div>
+            <div className="text-sm text-neutral-400">{track?.artist}</div>
         </div>
     );
 };

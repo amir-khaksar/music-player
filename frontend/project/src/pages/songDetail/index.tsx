@@ -4,6 +4,7 @@ import { usePlayer } from "../../contexts/playerContext";
 import { ArrowLeft, Heart, Pause, Play } from "lucide-react";
 import Loading from "../../components/Loading";
 import PlayerBar from "../../layout/PlayerBar";
+import NotFound from "../not-found";
 
 function formatDuration(seconds: number) {
     const m = Math.floor(seconds / 60);
@@ -19,6 +20,7 @@ export default function SongDetail() {
     const { setTrack, playToggle, track, isPlaying } = usePlayer();
 
     if (isLoading) return <Loading />;
+    if (!song) return <NotFound />;
 
     const handlePlay = () => {
         if (track?.id !== song.id) {
@@ -50,8 +52,8 @@ export default function SongDetail() {
                         <div className="relative mb-7 group">
                             <div className="w-full aspect-square rounded-2xl overflow-hidden border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.5)]">
                                 <img
-                                    src={song.cover_url}
-                                    alt={song.title}
+                                    src={song?.cover_url}
+                                    alt={song?.title}
                                     className="w-96 h-full object-cover"
                                 />
                             </div>
@@ -76,12 +78,12 @@ export default function SongDetail() {
                         <div className="flex items-start justify-between mb-6">
                             <div className="flex-1 min-w-0">
                                 <h1 className="text-white/90 text-xl font-semibold truncate">
-                                    {song.title}
+                                    {song?.title}
                                 </h1>
                                 <p className="text-white/45 text-sm mt-1 truncate">
-                                    {song.artist}
+                                    {song?.artist}
                                 </p>
-                                {song.album && (
+                                {song?.album && (
                                     <p className="text-white/25 text-xs mt-0.5 truncate">
                                         {song.album}
                                     </p>

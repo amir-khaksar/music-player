@@ -14,8 +14,8 @@ const router = createBrowserRouter([
         element: <Navigate to="/auth" replace />,
     },
     {
-        path: "*",
-        element: <NotFound />,
+        path: "/auth",
+        element: <Auth />,
     },
     {
         path: "discover",
@@ -26,8 +26,8 @@ const router = createBrowserRouter([
         element: <SongDetail />,
     },
     {
-        path: "/auth",
-        element: <Auth />,
+        path: "*",
+        element: <NotFound />,
     },
 ]);
 
