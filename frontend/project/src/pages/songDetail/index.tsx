@@ -8,6 +8,7 @@ import NotFound from "../not-found";
 import { useState } from "react";
 import { useLikeSong } from "./hooks/useLikeSong";
 import { useGetLikedSongs } from "./hooks/useGetLikedSongs";
+import { useUnlikeSong } from "./hooks/useUnlikeSong";
 
 function formatDuration(seconds: number) {
     const m = Math.floor(seconds / 60);
@@ -23,7 +24,10 @@ export default function SongDetail() {
 
     const { data: song, isLoading } = useGetSong(id!);
     const { mutate: likeSong } = useLikeSong();
+    const { mutate: unlikeSong } = useUnlikeSong();
     const { data: likedSongs } = useGetLikedSongs();
+
+    console.log(likedSongs);
 
     const { setTrack, playToggle, track, isPlaying } = usePlayer();
 
@@ -40,7 +44,9 @@ export default function SongDetail() {
 
     const clickHandler = () => {
         setLike((prev) => !prev);
-        if (!like) {
+        if (isLiked) {
+            unlikeSong(song.id);
+        } else {
             likeSong(song.id);
         }
     };
