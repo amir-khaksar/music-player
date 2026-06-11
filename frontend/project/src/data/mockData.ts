@@ -1,4 +1,4 @@
-import type { Album, Track } from "../types/media";
+import type { Album } from "../types/media";
 
 export const albums: Album[] = [
     {
@@ -12,28 +12,5 @@ export const albums: Album[] = [
         title: "City Lights",
         artist: "Neon Rivers",
         image: "https://picsum.photos/400?4",
-    },
-];
-
-export const tracks: Track[] = [
-    {
-        id: "t1",
-        title: "Fading Horizon",
-        artist: "Aurora Lane",
-        album: "Midnight Echoes",
-        image: "https://picsum.photos/400?5",
-        duration: 212,
-        audio_url:
-            "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-    },
-    {
-        id: "t2",
-        title: "Electric Heart",
-        artist: "Neon Rivers",
-        album: "City Lights",
-        image: "https://picsum.photos/400?6",
-        duration: 185,
-        audio_url:
-            "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
     },
 ];
