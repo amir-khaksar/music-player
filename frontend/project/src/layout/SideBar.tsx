@@ -1,14 +1,17 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 interface NavItem {
     id: string;
     label: string;
+    href: string;
 }
 
 const navItems: NavItem[] = [
-    { id: "home", label: "Home" },
-    { id: "search", label: "Search" },
-    { id: "library", label: "Your Library" },
+    { id: "home", label: "Home", href: "music" },
+    { id: "search", label: "Search", href: "" },
+    { id: "your likes", label: "Your Likes", href: "liked" },
+    { id: "library", label: "Your Library", href: "" },
 ];
 
 const playlists: string[] = [
@@ -28,17 +31,18 @@ const Sidebar = () => {
             </div>
             <nav className="space-y-2">
                 {navItems.map((item) => (
-                    <button
-                        key={item.id}
-                        onClick={() => setActive(item.id)}
-                        className={`w-full text-left px-4 py-2 rounded-xl transition ${
-                            active === item.id
-                                ? "bg-neutral-800 text-white"
-                                : "text-neutral-400 hover:bg-neutral-800 hover:text-white"
-                        }`}
-                    >
-                        {item.label}
-                    </button>
+                    <Link key={item.id} to={item.href}>
+                        <button
+                            onClick={() => setActive(item.id)}
+                            className={`w-full text-left px-4 py-2 mb-2 rounded-xl transition ${
+                                active === item.id
+                                    ? "bg-neutral-800 text-white"
+                                    : "text-neutral-400 hover:bg-neutral-800 hover:text-white"
+                            }`}
+                        >
+                            {item.label}
+                        </button>
+                    </Link>
                 ))}
             </nav>
             <div className="mt-8 flex-1 overflow-y-auto">

@@ -7,6 +7,8 @@ import Auth from "../pages/Auth/index";
 import MusicPlayer from "../pages/home/index";
 import NotFound from "../pages/not-found";
 import SongDetail from "../pages/songDetail";
+import SongsPage from "../pages/songs";
+import LikedSongsPage from "../pages/likedSongs";
 
 const router = createBrowserRouter([
     {
@@ -20,6 +22,16 @@ const router = createBrowserRouter([
     {
         path: "discover",
         element: <MusicPlayer />,
+        children: [
+            {
+                path: "music",
+                element: <SongsPage />,
+            },
+            {
+                path: "liked",
+                element: <LikedSongsPage />,
+            },
+        ],
     },
     {
         path: "discover/music/:id",

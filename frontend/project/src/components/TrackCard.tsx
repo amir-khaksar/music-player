@@ -21,7 +21,7 @@ const TrackCard = ({ track }: Props) => {
 
     return (
         <div
-            onClick={() => navigate(`music/${track?.id}`)}
+            onClick={() => navigate(`/discover/music/${track?.id}`)}
             className="group bg-neutral-900 p-4 rounded-2xl hover:bg-neutral-800 transition relative shadow-lg cursor-pointer"
         >
             <div className="relative">
