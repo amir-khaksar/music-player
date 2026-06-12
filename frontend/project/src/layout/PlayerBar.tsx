@@ -5,7 +5,7 @@ import {
     SkipForward,
     Pause,
     Volume2,
-    Shuffle,
+    ListPlus,
     SkipBack,
 } from "lucide-react";
 
@@ -25,6 +25,8 @@ const PlayerBar = () => {
         setVolume,
         handleProgressChange,
     } = usePlayer();
+
+    const addToPlaylist = () => {};
 
     if (!track) return null;
 
@@ -99,7 +101,11 @@ const PlayerBar = () => {
                         />
                     </div>
                 </div>
-                <Shuffle size={16} className="cursor-pointer text-white" />
+                <ListPlus
+                    onClick={addToPlaylist}
+                    size={16}
+                    className="cursor-pointer text-white"
+                />
             </div>
         </div>
     );

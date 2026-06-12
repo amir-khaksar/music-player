@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useGetSong } from "./hooks/useGetSong";
 import { usePlayer } from "../../contexts/playerContext";
-import { ArrowLeft, Heart, Pause, Play } from "lucide-react";
+import { ArrowLeft, Heart, Pause, Play, ListPlus } from "lucide-react";
 import Loading from "../../components/Loading";
 import PlayerBar from "../../layout/PlayerBar";
 import NotFound from "../not-found";
@@ -9,6 +9,7 @@ import { useState } from "react";
 import { useLikeSong } from "./hooks/useLikeSong";
 import { useGetLikedSongs } from "./hooks/useGetLikedSongs";
 import { useUnlikeSong } from "./hooks/useUnlikeSong";
+import AddToPlaylistModal from "../playLists/components/AddToPlaylistModal";
 
 function formatDuration(seconds: number) {
     const m = Math.floor(seconds / 60);
@@ -18,6 +19,7 @@ function formatDuration(seconds: number) {
 
 export default function SongDetail() {
     const [like, setLike] = useState(false);
+    const [showPlaylistModal, setShowPlaylistModal] = useState(false);
 
     const { id } = useParams();
     const navigate = useNavigate();
@@ -89,6 +91,12 @@ export default function SongDetail() {
                                 />
                             </button>
                             <button
+                                onClick={() => setShowPlaylistModal(true)}
+                                className="absolute top-3 left-3 w-9 h-9 rounded-xl bg-black/40 backdrop-blur-md border border-white/10 flex items-center justify-center text-white/50 hover:text-emerald-400 transition-colors duration-200"
+                            >
+                                <ListPlus size={16} />
+                            </button>
+                            <button
                                 onClick={handlePlay}
                                 className="absolute text-white inset-0 m-auto w-12 h-12 bg-emerald-500 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 translate-y-3 group-hover:translate-y-0 transition-all duration-200 cursor-pointer shadow-lg"
                             >
@@ -125,6 +133,12 @@ export default function SongDetail() {
                     </div>
                 </div>
             </div>
+            {showPlaylistModal && (
+                <AddToPlaylistModal
+                    songId={song.id}
+                    onClose={() => setShowPlaylistModal(false)}
+                />
+            )}
             <PlayerBar />
         </div>
     );
