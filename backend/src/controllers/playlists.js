@@ -69,6 +69,19 @@ exports.addSongToPlaylist = async (req, res) => {
         const { playlistId } = req.params;
         const { songId } = req.body;
 
+        const { data: existing } = await supabase
+            .from("playlist_songs")
+            .select("id")
+            .eq("playlist_id", playlistId)
+            .eq("song_id", songId)
+            .single();
+
+        if (existing) {
+            return res
+                .status(400)
+                .json({ message: "This song is already in the playlist" });
+        }
+
         const { data, error } = await supabase
             .from("playlist_songs")
             .insert({
