@@ -3,6 +3,8 @@ import { useGetPlaylists } from "./hooks/useGetPlaylists";
 import { ListMusic, Plus, Clock, ArrowRight } from "lucide-react";
 import { CreatePlaylistModal } from "./components/modal";
 import { useState } from "react";
+import { Outlet } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 interface Playlist {
     id: string;
@@ -22,6 +24,8 @@ function formatDate(dateStr: string) {
 export default function PlayLists() {
     const [showModal, setShowModal] = useState(false);
     const { data: playlists, isLoading } = useGetPlaylists();
+
+    const navigate = useNavigate();
 
     return (
         <div className="w-full bg-neutral-950 p-8 relative overflow-hidden">
@@ -63,6 +67,11 @@ export default function PlayLists() {
                     <div className="flex gap-3">
                         {playlists.map((playlist: Playlist) => (
                             <div
+                                onClick={() =>
+                                    navigate(
+                                        `/discover/playlists/${playlist.id}`,
+                                    )
+                                }
                                 key={playlist.id}
                                 className="group flex items-center gap-4 bg-white/4 hover:bg-white/6 backdrop-blur-sm border border-white/8 hover:border-white/15 rounded-2xl px-5 py-4 cursor-pointer transition-all duration-200"
                             >
@@ -101,6 +110,7 @@ export default function PlayLists() {
                     </div>
                 )}
             </div>
+            <Outlet />
             {showModal && (
                 <CreatePlaylistModal onClose={() => setShowModal(false)} />
             )}
