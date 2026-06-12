@@ -1,4 +1,6 @@
 import { NavLink } from "react-router-dom";
+import { useGetPlaylists } from "../pages/playLists/hooks/useGetPlaylists";
+import PlaylistSidebarLoading from "../components/PlaylistSidebarLoading";
 
 interface NavItem {
     id: string;
@@ -13,14 +15,9 @@ const navItems: NavItem[] = [
     { id: "library", label: "Your PlayLists", href: "playlists" },
 ];
 
-const playlists: string[] = [
-    "Deep Focus",
-    "Chill Nights",
-    "Workout Mix",
-    "Synthwave Drive",
-];
-
 const Sidebar = () => {
+    const { data: playlists, isLoading } = useGetPlaylists();
+
     return (
         <aside className="w-64 bg-neutral-900 p-6 flex flex-col">
             <div className="text-2xl font-bold mb-8 bg-linear-to-r from-green-400 to-emerald-600 bg-clip-text text-transparent">
@@ -44,14 +41,18 @@ const Sidebar = () => {
                     Playlists
                 </div>
                 <div className="space-y-2">
-                    {playlists.map((p) => (
-                        <div
-                            key={p}
-                            className="text-neutral-400 hover:text-white cursor-pointer transition"
-                        >
-                            {p}
-                        </div>
-                    ))}
+                    {isLoading ? (
+                        <PlaylistSidebarLoading />
+                    ) : (
+                        playlists.map((p: any) => (
+                            <div
+                                key={p.id}
+                                className="text-neutral-400 hover:text-white cursor-pointer transition"
+                            >
+                                {p.name}
+                            </div>
+                        ))
+                    )}
                 </div>
             </div>
         </aside>
