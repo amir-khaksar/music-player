@@ -43,6 +43,25 @@ exports.getMyPlaylists = async (req, res) => {
     }
 };
 
+exports.getSongsWithPlaylists = async (req, res) => {
+    try {
+        const { playlistId } = req.params;
+
+        const { data, error } = await supabase
+            .from("playlist_songs")
+            .select("*, songs(*)")
+            .eq("playlist_id", playlistId);
+
+        if (error) throw error; // ← error
+
+        res.json(data);
+    } catch (err) {
+        res.status(500).json({
+            message: err.message,
+        });
+    }
+};
+
 exports.deletePlaylist = async (req, res) => {
     try {
         const { playlistId } = req.params;
