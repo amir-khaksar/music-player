@@ -70,7 +70,7 @@ export default function Modal({ type, title, message, onClose }: ModalProps) {
                     onClick={onClose}
                     className="w-full flex-1 cursor-pointer py-2.5 bg-white/5 hover:bg-white/8 border border-white/8 hover:border-white/15 rounded-xl text-white/50 hover:text-white/75 text-sm font-medium transition-all duration-200"
                 >
-                    Cancel
+                    Ok
                 </button>
             </div>
         </div>
