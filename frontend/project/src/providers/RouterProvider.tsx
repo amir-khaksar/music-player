@@ -9,6 +9,7 @@ import NotFound from "../pages/not-found";
 import SongDetail from "../pages/songDetail";
 import SongsPage from "../pages/songs";
 import LikedSongsPage from "../pages/likedSongs";
+import PlayLists from "../pages/playLists";
 
 const router = createBrowserRouter([
     {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
             {
                 path: "liked",
                 element: <LikedSongsPage />,
+            },
+            {
+                path: "playlists",
+                element: <PlayLists />,
             },
         ],
     },

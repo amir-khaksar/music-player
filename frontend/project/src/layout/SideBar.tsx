@@ -10,7 +10,7 @@ const navItems: NavItem[] = [
     { id: "home", label: "Home", href: "music" },
     { id: "search", label: "Search", href: "search" },
     { id: "your likes", label: "Your Likes", href: "liked" },
-    { id: "library", label: "Your Library", href: "library" },
+    { id: "library", label: "Your PlayLists", href: "playlists" },
 ];
 
 const playlists: string[] = [

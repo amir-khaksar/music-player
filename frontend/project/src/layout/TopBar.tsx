@@ -20,7 +20,7 @@ const Topbar = () => {
             : [];
 
     return (
-        <header className="flex items-center justify-between z-10 px-6 py-4 bg-neutral-950/70 backdrop-blur-xl border-b border-neutral-800">
+        <header className="flex items-center justify-between z-50 px-6 py-4 bg-neutral-950/70 backdrop-blur-xl border-b border-neutral-800">
             <div className="relative w-96">
                 <input
                     onChange={(e) => setValue(e.target.value)}
