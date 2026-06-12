@@ -65,21 +65,13 @@ export function CreatePlaylistModal({ onClose }: { onClose: () => void }) {
                     />
                 </div>
 
-                <div className="flex gap-3">
-                    <button
-                        onClick={onClose}
-                        className="flex-1 py-2.5 cursor-pointer bg-white/5 hover:bg-white/8 border border-white/8 hover:border-white/15 rounded-xl text-white/50 hover:text-white/75 text-sm font-medium transition-all duration-200"
-                    >
-                        Cancel
-                    </button>
-                    <button
-                        onClick={handleSubmit}
-                        disabled={!name.trim() || isPending}
-                        className="flex-1 cursor-pointer py-2.5 bg-emerald-500/85 hover:bg-emerald-600/90 active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed border border-emerald-400/40 rounded-xl text-white text-sm font-medium transition-all duration-200 shadow-[inset_0_1px_0_rgba(255,255,255,0.15)]"
-                    >
-                        {isPending ? "Creating" : "Create"}
-                    </button>
-                </div>
+                <button
+                    onClick={handleSubmit}
+                    disabled={!name.trim() || isPending}
+                    className="w-full cursor-pointer py-2.5 bg-emerald-500/85 hover:bg-emerald-600/90 active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed border border-emerald-400/40 rounded-xl text-white text-sm font-medium transition-all duration-200 shadow-[inset_0_1px_0_rgba(255,255,255,0.15)]"
+                >
+                    {isPending ? "Creating" : "Create"}
+                </button>
             </div>
         </div>
     );
