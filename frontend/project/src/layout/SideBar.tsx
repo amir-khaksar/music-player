@@ -45,12 +45,13 @@ const Sidebar = () => {
                         <PlaylistSidebarLoading />
                     ) : (
                         playlists.map((p: any) => (
-                            <div
+                            <NavLink
+                                to={`playlists/${p.id}`}
                                 key={p.id}
                                 className="text-neutral-400 hover:text-white cursor-pointer transition"
                             >
                                 {p.name}
-                            </div>
+                            </NavLink>
                         ))
                     )}
                 </div>
