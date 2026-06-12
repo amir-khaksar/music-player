@@ -40,7 +40,7 @@ export default function AddToPlaylistModal({ songId, onClose }: Props) {
 
                 <button
                     onClick={onClose}
-                    className="absolute top-4 right-4 w-7 h-7 flex items-center justify-center rounded-lg bg-white/5 hover:bg-white/10 border border-white/8 text-white/40 hover:text-white/70 transition-all duration-200"
+                    className="absolute cursor-pointer top-4 right-4 w-7 h-7 flex items-center justify-center rounded-lg bg-white/5 hover:bg-white/10 border border-white/8 text-white/40 hover:text-white/70 transition-all duration-200"
                 >
                     <X size={14} />
                 </button>
@@ -72,7 +72,7 @@ export default function AddToPlaylistModal({ songId, onClose }: Props) {
                             key={playlist.id}
                             onClick={() => handleAdd(playlist.id)}
                             disabled={isPending || addedId === playlist.id}
-                            className="flex items-center gap-3 px-4 py-3 bg-white/4 hover:bg-white/8 border border-white/8 hover:border-white/15 rounded-xl transition-all duration-200 text-left disabled:opacity-60"
+                            className="flex cursor-pointer items-center gap-3 px-4 py-3 bg-white/4 hover:bg-white/8 border border-white/8 hover:border-white/15 rounded-xl transition-all duration-200 text-left disabled:opacity-60"
                         >
                             <div className="w-9 h-9 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center shrink-0">
                                 {addedId === playlist.id ? (
