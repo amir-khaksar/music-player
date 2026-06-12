@@ -2,6 +2,7 @@ import { X, ListMusic, Check } from "lucide-react";
 import { useGetPlaylists } from "../hooks/useGetPlaylists";
 import { useAddSongToPlaylist } from "./../hooks/useAddSongToMusic";
 import { useState } from "react";
+import { useModalStore } from "../../../store/useModalStore";
 
 interface Props {
     songId: string;
@@ -13,6 +14,8 @@ export default function AddToPlaylistModal({ songId, onClose }: Props) {
     const { mutate: addSong, isPending } = useAddSongToPlaylist();
     const [addedId, setAddedId] = useState<string | null>(null);
 
+    const { showModal } = useModalStore();
+
     const handleAdd = (playlistId: string) => {
         addSong(
             { playlistId, songId },
@@ -20,6 +23,13 @@ export default function AddToPlaylistModal({ songId, onClose }: Props) {
                 onSuccess: () => {
                     setAddedId(playlistId);
                     setTimeout(onClose, 800);
+                },
+                onError: () => {
+                    showModal({
+                        type: "error",
+                        title: "Add To Playlist failed",
+                        message: "This song is already in the playlist",
+                    });
                 },
             },
         );
