@@ -10,7 +10,6 @@ interface NavItem {
 
 const navItems: NavItem[] = [
     { id: "home", label: "Home", href: "music" },
-    { id: "search", label: "Search", href: "search" },
     { id: "your likes", label: "Your Likes", href: "liked" },
     { id: "playlist", label: "Your PlayLists", href: "playlists" },
 ];
