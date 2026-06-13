@@ -1,11 +1,32 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useGetSongs } from "./../pages/home/hooks/useGetSongs";
 import type { Track } from "../types/media";
 import { usePlayer } from "../contexts/playerContext";
 import { useNavigate } from "react-router-dom";
+import ProfileDropdown from "../components/ProfileDropdown";
+import { useUser } from "../pages/Auth/hooks/useUser";
+import { getInitials } from "../helper/getInitials";
 
 const Topbar = () => {
     const [value, setValue] = useState("");
+    const [dropdownOpen, setDropdownOpen] = useState(false);
+    const dropdownRef = useRef<HTMLDivElement>(null);
+
+    const { data: user } = useUser();
+
+    useEffect(() => {
+        const handler = (e: MouseEvent) => {
+            if (
+                dropdownRef.current &&
+                !dropdownRef.current.contains(e.target as Node)
+            ) {
+                setDropdownOpen(false);
+            }
+        };
+        document.addEventListener("mousedown", handler);
+        return () => document.removeEventListener("mousedown", handler);
+    }, []);
+
     const { data, isLoading } = useGetSongs();
     const { track: currentTrack } = usePlayer();
     const navigate = useNavigate();
@@ -71,6 +92,22 @@ const Topbar = () => {
                             No results found.{" "}
                         </div>
                     )}
+            </div>
+
+            <div className="relative" ref={dropdownRef}>
+                <button
+                    onClick={() => setDropdownOpen((prev) => !prev)}
+                    className="relative focus:outline-none cursor-pointer group"
+                    aria-label="Open profile menu"
+                >
+                    <div className="w-9 h-9 rounded-full bg-emerald-500 flex items-center justify-center text-sm font-medium text-white border-2 border-transparent group-hover:border-emerald-400 transition">
+                        {user?.email ? getInitials(user.email) : "?"}
+                    </div>
+                </button>
+
+                {dropdownOpen && (
+                    <ProfileDropdown onClose={() => setDropdownOpen(false)} />
+                )}
             </div>
         </header>
     );
