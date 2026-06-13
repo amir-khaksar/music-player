@@ -1,6 +1,6 @@
 import { X, ListMusic, Check } from "lucide-react";
 import { useGetPlaylists } from "../hooks/useGetPlaylists";
-import { useAddSongToPlaylist } from "./../hooks/useAddSongToMusic";
+import { useAddSongToPlaylist } from "../hooks/useAddSongToPlaylist";
 import { useState } from "react";
 import { useModalStore } from "../../../store/useModalStore";
 
