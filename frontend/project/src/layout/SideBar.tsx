@@ -48,7 +48,7 @@ const Sidebar = () => {
                             <NavLink
                                 to={`playlists/${p.id}`}
                                 key={p.id}
-                                className="text-neutral-400 flex hover:text-white cursor-pointer transition"
+                                className="text-neutral-400 block hover:text-white cursor-pointer transition"
                             >
                                 {p.name}
                             </NavLink>
