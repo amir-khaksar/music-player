@@ -11,6 +11,8 @@ import SongsPage from "../pages/songs";
 import LikedSongsPage from "../pages/likedSongs";
 import PlayLists from "../pages/playLists";
 import PlaylistDetail from "../pages/playLists/plalylistDetail/index";
+import AdminPage from "../pages/admin/index";
+import UploadPage from "../pages/admin/upload";
 
 const router = createBrowserRouter([
     {
@@ -46,6 +48,14 @@ const router = createBrowserRouter([
     {
         path: "discover/music/:id",
         element: <SongDetail />,
+    },
+    {
+        path: "/admin",
+        element: <AdminPage />,
+    },
+    {
+        path: "/admin/upload",
+        element: <UploadPage />,
     },
     {
         path: "*",
