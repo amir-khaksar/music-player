@@ -44,7 +44,7 @@ export default function SongDetail() {
 
     const clickHandler = () => {
         setLike((prev) => !prev);
-        if (isLiked) {
+        if (like) {
             unlikeSong(song.id);
         } else {
             likeSong(song.id);
