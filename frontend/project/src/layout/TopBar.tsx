@@ -6,8 +6,14 @@ import { useNavigate } from "react-router-dom";
 import ProfileDropdown from "../components/ProfileDropdown";
 import { useUser } from "../pages/Auth/hooks/useUser";
 import { getInitials } from "../helper/getInitials";
+import { X, Menu } from "lucide-react";
 
-const Topbar = () => {
+interface Props {
+    onMenuClick: () => void;
+    isOpen: boolean;
+}
+
+const Topbar = ({ onMenuClick, isOpen }: Props) => {
     const [value, setValue] = useState("");
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
@@ -42,6 +48,12 @@ const Topbar = () => {
 
     return (
         <header className="flex items-center justify-between z-50 px-6 py-4 bg-neutral-950/70 backdrop-blur-xl border-b border-neutral-800">
+            <button
+                onClick={onMenuClick}
+                className="md:hidden mr-2 transition-transform duration-300"
+            >
+                {isOpen ? <X color="#737373" /> : <Menu color="#737373" />}
+            </button>
             <div className="relative w-96">
                 <input
                     onChange={(e) => setValue(e.target.value)}
