@@ -75,3 +75,4 @@ uploads/
 # Misc
 *.tgz
 *.swp
+.vercel
