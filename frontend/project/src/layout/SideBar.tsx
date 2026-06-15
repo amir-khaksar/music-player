@@ -32,7 +32,7 @@ const Sidebar = ({ isOpen, onClose }: Props) => {
             )}
             <aside
                 onClick={onClose}
-                className={`w-64 h-screen transition-transform duration-300 z-50 bg-neutral-900 p-6 flex flex-col ${isOpen ? "translate-x-0" : "-translate-x-full"} md:static md:translate-x-0`}
+                className={`fixed top-0 left-0 z-70 h-screen w-64 bg-neutral-900 p-6 flex flex-col transition-transform duration-300 ${isOpen ? "translate-x-0" : "-translate-x-full"} md:static md:translate-x-0`}
             >
                 <div className="flex items-center gap-x-12">
                     <div className="text-2xl font-bold mb-8 bg-linear-to-r from-green-400 to-emerald-600 bg-clip-text text-transparent">

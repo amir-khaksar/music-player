@@ -5,7 +5,7 @@ import { Outlet } from "react-router-dom";
 import { useState } from "react";
 
 export default function index() {
-    const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
     return (
         <div className="flex h-screen bg-neutral-950 text-neutral-100">
@@ -13,15 +13,18 @@ export default function index() {
                 isOpen={isSidebarOpen}
                 onClose={() => setIsSidebarOpen(false)}
             />
-            <div className="flex flex-1 flex-col">
+
+            <div className="flex flex-1 flex-col min-w-0">
                 <Topbar
                     isOpen={isSidebarOpen}
                     onMenuClick={() => setIsSidebarOpen((prev) => !prev)}
                 />
-                <main className="overflow-y-auto p-6 pb-32">
+
+                <main className="w-full overflow-y-auto p-6 pb-32">
                     <Outlet />
                 </main>
             </div>
+
             <PlayerBar />
         </div>
     );
