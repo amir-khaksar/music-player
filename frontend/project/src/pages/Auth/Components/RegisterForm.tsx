@@ -33,37 +33,42 @@ export default function RegisterForm() {
                 </p>
             </div>
 
-            <Field
-                label="Email"
-                type="email"
-                placeholder="you@example.com"
-                {...register("email", {
-                    required: "Email is required",
-                })}
-            />
+            <div className="h-19">
+                <Field
+                    label="Email"
+                    type="email"
+                    placeholder="you@example.com"
+                    {...register("email", {
+                        required: "Email is required",
+                    })}
+                />
 
-            {errors.email && (
-                <p className="text-red-500 text-sm">{errors.email.message}</p>
-            )}
+                {errors.email && (
+                    <p className="text-red-500 text-sm mt-1">
+                        {errors.email.message}
+                    </p>
+                )}
+            </div>
+            <div className="h-19">
+                <Field
+                    label="Password"
+                    type="password"
+                    placeholder="••••••••"
+                    {...register("password", {
+                        required: "Password is required",
+                        minLength: {
+                            value: 8,
+                            message: "Password must be at least 8 characters",
+                        },
+                    })}
+                />
 
-            <Field
-                label="Password"
-                type="password"
-                placeholder="••••••••"
-                {...register("password", {
-                    required: "Password is required",
-                    minLength: {
-                        value: 8,
-                        message: "Password must be at least 8 characters",
-                    },
-                })}
-            />
-
-            {errors.password && (
-                <p className="text-red-500 text-sm">
-                    {errors.password.message}
-                </p>
-            )}
+                {errors.password && (
+                    <p className="text-red-500 text-sm mt-1">
+                        {errors.password.message}
+                    </p>
+                )}
+            </div>
 
             <AuthButton
                 label="register"
