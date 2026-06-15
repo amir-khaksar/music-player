@@ -6,14 +6,13 @@ import { useNavigate } from "react-router-dom";
 import ProfileDropdown from "../components/ProfileDropdown";
 import { useUser } from "../pages/Auth/hooks/useUser";
 import { getInitials } from "../helper/getInitials";
-import { X, Menu } from "lucide-react";
+import { Menu } from "lucide-react";
 
 interface Props {
     onMenuClick: () => void;
-    isOpen: boolean;
 }
 
-const Topbar = ({ onMenuClick, isOpen }: Props) => {
+const Topbar = ({ onMenuClick }: Props) => {
     const [value, setValue] = useState("");
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
@@ -47,19 +46,19 @@ const Topbar = ({ onMenuClick, isOpen }: Props) => {
             : [];
 
     return (
-        <header className="flex items-center justify-between z-50 px-6 py-4 bg-neutral-950/70 backdrop-blur-xl border-b border-neutral-800">
+        <header className="flex items-center justify-between gap-x-3 z-50 px-6 py-4 bg-neutral-950/70 backdrop-blur-xl border-b border-neutral-800">
             <button
                 onClick={onMenuClick}
-                className="md:hidden mr-2 transition-transform duration-300"
+                className="md:hidden transition-transform duration-300"
             >
-                {isOpen ? <X color="#737373" /> : <Menu color="#737373" />}
+                <Menu size={17} color="#737373" />
             </button>
             <div className="relative w-96">
                 <input
                     onChange={(e) => setValue(e.target.value)}
                     value={value}
                     type="text"
-                    placeholder="Search for tracks, artists, albums"
+                    placeholder="Search for tracks, artists"
                     className="w-full bg-neutral-900 text-sm px-4 py-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 transition"
                 />
 

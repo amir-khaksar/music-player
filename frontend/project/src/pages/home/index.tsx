@@ -15,10 +15,7 @@ export default function index() {
             />
 
             <div className="flex flex-1 flex-col min-w-0">
-                <Topbar
-                    isOpen={isSidebarOpen}
-                    onMenuClick={() => setIsSidebarOpen((prev) => !prev)}
-                />
+                <Topbar onMenuClick={() => setIsSidebarOpen((prev) => !prev)} />
 
                 <main className="w-full overflow-y-auto p-6 pb-32">
                     <Outlet />
