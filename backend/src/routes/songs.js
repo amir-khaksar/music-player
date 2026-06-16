@@ -23,7 +23,7 @@ router.post("/:songId/like", protect, likeSong);
 
 router.delete("/:songId/like", protect, unlikeSong);
 
-router.get("/:id", getOne);
+router.get("/:id", protect, getOne);
 
 router.post("/", adminOnly, createSong);
 

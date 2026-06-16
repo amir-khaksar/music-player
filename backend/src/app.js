@@ -6,7 +6,12 @@ const playlistsRouter = require("./routes/playlists");
 
 const app = express();
 
-app.use(cors());
+app.use(
+    cors({
+        origin: "https://music-player-ten-lime.vercel.app",
+        credentials: true,
+    }),
+);
 app.use(express.json());
 
 app.use("/api/songs", songsRouter);
