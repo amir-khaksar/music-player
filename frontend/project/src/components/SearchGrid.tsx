@@ -8,6 +8,8 @@ interface Props {
 
 const SearchGrid = ({ tracks }: Props) => {
     const location = useLocation();
+    const safeTracks = tracks ?? [];
+
     return (
         <div className="space-y-12">
             <section>
@@ -17,7 +19,7 @@ const SearchGrid = ({ tracks }: Props) => {
                         : "Tracks"}
                 </h2>
                 <div className="grid gap-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
-                    {tracks.map((track) => (
+                    {safeTracks.map((track) => (
                         <TrackCard key={track.id} track={track} />
                     ))}
                 </div>

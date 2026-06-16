@@ -8,5 +8,6 @@ export const useGetPlaylists = () => {
             const { data } = await api.get("/playlists");
             return data;
         },
+        retry: false,
     });
 };

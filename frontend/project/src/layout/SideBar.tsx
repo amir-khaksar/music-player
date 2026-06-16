@@ -21,6 +21,7 @@ const navItems: NavItem[] = [
 
 const Sidebar = ({ isOpen, onClose }: Props) => {
     const { data: playlists, isLoading } = useGetPlaylists();
+    const safePlaylist = playlists ?? [];
 
     return (
         <>
@@ -66,7 +67,7 @@ const Sidebar = ({ isOpen, onClose }: Props) => {
                         {isLoading ? (
                             <PlaylistSidebarLoading />
                         ) : (
-                            playlists.map((p: any) => (
+                            safePlaylist.map((p: any) => (
                                 <NavLink
                                     to={`playlists/${p.id}`}
                                     key={p.id}
