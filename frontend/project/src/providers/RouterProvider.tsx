@@ -13,15 +13,20 @@ import PlayLists from "../pages/playLists";
 import PlaylistDetail from "../pages/playLists/plalylistDetail/index";
 import AdminPage from "../pages/admin/index";
 import UploadPage from "../pages/admin/upload";
+import { RedirectIfAuthenticated } from "./routes/guards";
 
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <Navigate to="/auth" replace />,
+        element: <Navigate to="/discover/music" replace />,
     },
     {
         path: "/auth",
-        element: <Auth />,
+        element: (
+            <RedirectIfAuthenticated>
+                <Auth />
+            </RedirectIfAuthenticated>
+        ),
     },
     {
         path: "discover",
