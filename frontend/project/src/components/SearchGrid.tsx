@@ -11,14 +11,14 @@ const SearchGrid = ({ tracks }: Props) => {
     const safeTracks = tracks ?? [];
 
     return (
-        <div className="space-y-12">
+        <div className="space-y-8 sm:space-y-12">
             <section>
-                <h2 className="text-xl font-bold mb-6">
+                <h2 className="text-lg sm:text-xl font-bold mb-4 sm:mb-6">
                     {location.pathname === "/discover/liked"
                         ? "Liked Tracks"
                         : "Tracks"}
                 </h2>
-                <div className="grid gap-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+                <div className="grid gap-3 sm:gap-4 md:gap-6 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
                     {safeTracks.map((track) => (
                         <TrackCard
                             key={track.id}
