@@ -10,7 +10,7 @@ const {
     unlikeSong,
 } = require("../controllers/songs");
 const upload = require("../configs/multer");
-const { protect } = require("../middlewares/auth");
+const { protect, adminOnly } = require("../middlewares/auth");
 
 const router = express.Router();
 router.post("/upload", upload.single("audio"), uploadOne);
@@ -25,8 +25,8 @@ router.delete("/:songId/like", protect, unlikeSong);
 
 router.get("/:id", getOne);
 
-router.post("/", createSong);
+router.post("/", adminOnly, createSong);
 
-router.delete("/:id", deleteOne);
+router.delete("/:id", adminOnly, deleteOne);
 
 module.exports = router;

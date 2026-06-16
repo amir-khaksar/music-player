@@ -20,3 +20,19 @@ exports.protect = async (req, res, next) => {
 
     next();
 };
+
+exports.adminOnly = async (req, res, next) => {
+    const { data: profile, error } = await supabase
+        .from("profiles")
+        .select("role")
+        .eq("id", req.user.id)
+        .single();
+
+    if (error || profile.role !== "admin") {
+        return res.status(403).json({
+            message: "Access denied",
+        });
+    }
+
+    next();
+};
