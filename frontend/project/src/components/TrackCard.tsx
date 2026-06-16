@@ -39,7 +39,7 @@ const TrackCard = ({ track, queue }: Props) => {
                     <Play size={16} />
                 </button>
             </div>
-            <div className="font-semibold">{track?.title}</div>
+            <div className="font-semibold sm:font-normal">{track?.title}</div>
             <div className="text-sm text-neutral-400">{track?.artist}</div>
         </div>
     );

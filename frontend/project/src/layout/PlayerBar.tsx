@@ -39,25 +39,80 @@ const PlayerBar = () => {
                     onClose={() => setShowPlaylistModal(false)}
                 />
             )}
-            <div className="fixed bottom-0 left-0 right-0 bg-neutral-900/70 backdrop-blur-2xl border-t border-neutral-800 px-2 py-1 flex items-center justify-center gap-x-8">
-                <div className="flex items-center gap-4">
+
+            {/* Mobile player bar */}
+            <div className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-neutral-900/70 backdrop-blur-2xl border-t border-neutral-800">
+                <ProgressBar value={progress} onChange={handleProgressChange} />
+                <div className="flex items-center justify-between gap-3 px-3 pt-2 pb-[calc(0.5rem+env(safe-area-inset-bottom))]">
+                    <div className="flex items-center gap-3 min-w-0 flex-1">
+                        <img
+                            src={track.cover_url}
+                            alt={track.title}
+                            className="w-11 h-11 rounded-lg shrink-0 object-cover"
+                        />
+                        <div className="min-w-0">
+                            <div className="font-semibold text-sm text-white truncate">
+                                {track.title}
+                            </div>
+                            <div className="text-xs text-neutral-400 truncate">
+                                {track.artist}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="flex items-center gap-1 shrink-0">
+                        <button
+                            onClick={playPrevious}
+                            className="text-white cursor-pointer p-1.5"
+                        >
+                            <SkipBack size={18} />
+                        </button>
+                        <button
+                            onClick={playToggle}
+                            className="bg-emerald-500 text-white w-9 h-9 rounded-full flex items-center justify-center cursor-pointer shrink-0"
+                        >
+                            {isPlaying ? (
+                                <Pause size={16} />
+                            ) : (
+                                <Play size={16} />
+                            )}
+                        </button>
+                        <button
+                            onClick={playNext}
+                            className="text-white cursor-pointer p-1.5"
+                        >
+                            <SkipForward size={18} />
+                        </button>
+                        <button
+                            onClick={() => setShowPlaylistModal(true)}
+                            className="text-white cursor-pointer p-1.5"
+                        >
+                            <ListPlus size={18} />
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            {/* Desktop / tablet player bar */}
+            <div className="hidden md:flex fixed bottom-0 left-0 right-0 z-50 bg-neutral-900/70 backdrop-blur-2xl border-t border-neutral-800 px-4 py-1 items-center gap-4 lg:gap-8">
+                <div className="flex items-center gap-4 w-44 lg:w-56 xl:w-64 shrink-0 min-w-0">
                     <img
                         src={track.cover_url}
                         alt={track.title}
-                        className="w-14 h-14 rounded-xl"
+                        className="w-14 h-14 rounded-xl shrink-0 object-cover"
                     />
-                    <div>
-                        <div className="font-semibold text-sm text-white">
+                    <div className="min-w-0">
+                        <div className="font-semibold text-sm text-white truncate">
                             {track.title}
                         </div>
-                        <div className="text-xs text-neutral-400">
+                        <div className="text-xs text-neutral-400 truncate">
                             {track.artist}
                         </div>
                     </div>
                 </div>
 
-                <div className="flex items-center w-2xl gap-6">
-                    <div className="flex items-center gap-4 text-lg">
+                <div className="flex items-center flex-1 min-w-0 max-w-xs lg:max-w-xl xl:max-w-2xl mx-auto gap-4 lg:gap-6">
+                    <div className="flex items-center gap-4 text-lg shrink-0">
                         <button
                             onClick={playPrevious}
                             className="cursor-pointer text-white"
@@ -100,7 +155,7 @@ const PlayerBar = () => {
                     </div>
                 </div>
 
-                <div className="relative flex justify-end items-center gap-x-3">
+                <div className="relative flex justify-end items-center gap-x-3 w-20 shrink-0">
                     <div className="group relative pt-1">
                         <button className="cursor-pointer text-white">
                             <Volume2 size={16} />
