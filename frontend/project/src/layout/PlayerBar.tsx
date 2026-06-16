@@ -19,6 +19,8 @@ const PlayerBar = () => {
         track,
         isPlaying,
         playToggle,
+        playNext,
+        playPrevious,
         progress,
         volume,
         setVolume,
@@ -56,7 +58,10 @@ const PlayerBar = () => {
 
                 <div className="flex items-center w-2xl gap-6">
                     <div className="flex items-center gap-4 text-lg">
-                        <button className="cursor-pointer text-white">
+                        <button
+                            onClick={playPrevious}
+                            className="cursor-pointer text-white"
+                        >
                             <SkipBack size={16} />
                         </button>
                         <button
@@ -69,7 +74,10 @@ const PlayerBar = () => {
                                 <Play size={16} />
                             )}
                         </button>
-                        <button className="cursor-pointer text-white">
+                        <button
+                            onClick={playNext}
+                            className="cursor-pointer text-white"
+                        >
                             <SkipForward size={16} />
                         </button>
                     </div>

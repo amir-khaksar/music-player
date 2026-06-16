@@ -2,18 +2,20 @@ import type { Track } from "../types/media";
 import { Play } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { usePlayer } from "../contexts/playerContext";
+
 interface Props {
     track: Track;
+    queue?: Track[];
 }
 
-const TrackCard = ({ track }: Props) => {
+const TrackCard = ({ track, queue }: Props) => {
     const navigate = useNavigate();
     const { track: currentTrack, setTrack, playToggle } = usePlayer();
 
     const handlePlayClick = (e: React.MouseEvent) => {
         e.stopPropagation();
         if (currentTrack?.id !== track.id) {
-            setTrack(track);
+            setTrack(track, queue);
         } else {
             playToggle();
         }
