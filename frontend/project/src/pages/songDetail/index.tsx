@@ -20,7 +20,6 @@ function formatDuration(seconds: number) {
 export default function SongDetail() {
     const [like, setLike] = useState(false);
     const [showPlaylistModal, setShowPlaylistModal] = useState(false);
-    console.log(like);
 
     const { id } = useParams();
     const navigate = useNavigate();
