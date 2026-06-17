@@ -18,7 +18,6 @@ function formatDuration(seconds: number) {
 }
 
 export default function SongDetail() {
-    const [like, setLike] = useState(false);
     const [showPlaylistModal, setShowPlaylistModal] = useState(false);
 
     const { id } = useParams();
@@ -42,16 +41,15 @@ export default function SongDetail() {
         }
     };
 
+    const isLiked = likedSongs?.some((s: any) => s.song_id === song.id);
+
     const clickHandler = () => {
-        setLike((prev) => !prev);
         if (isLiked) {
             unlikeSong(song.id);
         } else {
             likeSong(song.id);
         }
     };
-
-    const isLiked = likedSongs?.some((s: any) => s.song_id === song.id);
 
     return (
         <div>

@@ -1,10 +1,11 @@
 import Loading from "../../components/Loading";
 import { useGetPlaylists } from "./hooks/useGetPlaylists";
-import { ListMusic, Plus, Clock, ArrowRight } from "lucide-react";
+import { ListMusic, Plus, Clock, ArrowRight, Trash2 } from "lucide-react";
 import { CreatePlaylistModal } from "./components/modal";
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useRemovePlaylist } from "./hooks/useRemovePlaylist";
 
 interface Playlist {
     id: string;
@@ -23,9 +24,19 @@ function formatDate(dateStr: string) {
 
 export default function PlayLists() {
     const [showModal, setShowModal] = useState(false);
+
     const { data: playlists, isLoading } = useGetPlaylists();
+    const { mutate: deletePlaylist } = useRemovePlaylist();
 
     const navigate = useNavigate();
+
+    const trashClickHandler = (
+        e: React.MouseEvent<HTMLButtonElement>,
+        playlistId: string,
+    ) => {
+        e.stopPropagation();
+        deletePlaylist(playlistId);
+    };
 
     return (
         <div className="w-full bg-neutral-950 p-8 relative overflow-hidden">
@@ -100,10 +111,25 @@ export default function PlayLists() {
                                     )}
                                 </div>
 
-                                <ArrowRight
-                                    size={16}
-                                    className="text-white/25"
-                                />
+                                <div className="flex flex-col gap-y-4">
+                                    <button
+                                        className="cursor-pointer"
+                                        onClick={(e) =>
+                                            trashClickHandler(e, playlist.id)
+                                        }
+                                    >
+                                        <Trash2
+                                            size={16}
+                                            className="text-red-600"
+                                        />
+                                    </button>
+                                    <button className="cursor-pointer">
+                                        <ArrowRight
+                                            size={16}
+                                            className="text-white/25"
+                                        />
+                                    </button>
+                                </div>
                             </div>
                         ))}
                     </div>
