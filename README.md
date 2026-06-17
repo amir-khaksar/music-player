@@ -239,13 +239,9 @@ DELETE /api/playlists/:playlistId/songs/:songId
 
 ## 📸 Screenshots
 
-Add screenshots here:
-
-```md
 ![Home](./frontend//project//public/screenshots/home.png)
 ![Song Detail](./frontend//project//public/screenshots/song-detail.png)
 ![Playlist](./frontend//project//public/screenshots/playlist.png)
-```
 
 ---
 
