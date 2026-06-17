@@ -4,9 +4,10 @@ import { useLocation } from "react-router-dom";
 
 interface Props {
     tracks: Track[];
+    onRemove?: (trackId: string) => void;
 }
 
-const SearchGrid = ({ tracks }: Props) => {
+const SearchGrid = ({ tracks, onRemove }: Props) => {
     const location = useLocation();
     const safeTracks = tracks ?? [];
 
@@ -24,6 +25,7 @@ const SearchGrid = ({ tracks }: Props) => {
                             key={track.id}
                             track={track}
                             queue={safeTracks}
+                            onRemove={onRemove}
                         />
                     ))}
                 </div>
