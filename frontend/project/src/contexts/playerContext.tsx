@@ -112,7 +112,7 @@ export function PlayerProvider({ children }: { children: React.ReactNode }) {
                     ref={audioRef}
                     src={track.audio_url}
                     onTimeUpdate={handleTimeUpdate}
-                    onEnded={() => setIsPlaying(false)}
+                    onEnded={playNext}
                 />
             )}
             {children}
