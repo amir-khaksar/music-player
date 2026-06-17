@@ -25,8 +25,8 @@ router.delete("/:songId/like", protect, unlikeSong);
 
 router.get("/:id", protect, getOne);
 
-router.post("/", adminOnly, createSong);
+router.post("/", protect, adminOnly, createSong);
 
-router.delete("/:id", adminOnly, deleteOne);
+router.delete("/:id", protect, adminOnly, deleteOne);
 
 module.exports = router;
