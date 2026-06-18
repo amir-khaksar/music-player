@@ -13,7 +13,11 @@ import PlayLists from "../pages/playLists";
 import PlaylistDetail from "../pages/playLists/plalylistDetail/index";
 import AdminPage from "../pages/admin/index";
 import UploadPage from "../pages/admin/upload";
-import { RedirectIfAuthenticated, RequireAuth } from "./routes/guards";
+import {
+    RedirectIfAuthenticated,
+    RequireAdmin,
+    RequireAuth,
+} from "./routes/guards";
 
 const router = createBrowserRouter([
     {
@@ -60,12 +64,17 @@ const router = createBrowserRouter([
         element: <SongDetail />,
     },
     {
-        path: "/admin",
-        element: <AdminPage />,
-    },
-    {
-        path: "/admin/upload",
-        element: <UploadPage />,
+        element: <RequireAdmin />,
+        children: [
+            {
+                path: "/admin",
+                element: <AdminPage />,
+            },
+            {
+                path: "/admin/upload",
+                element: <UploadPage />,
+            },
+        ],
     },
     {
         path: "*",

@@ -20,3 +20,11 @@ export const RedirectIfAuthenticated = ({
     if (session) return <Navigate to="/discover/music" replace />;
     return children;
 };
+
+export const RequireAdmin = () => {
+    const { session, role, loading } = useAuth();
+    if (loading) return <Loading />;
+    if (!session) return <Navigate to="/auth" replace />;
+    if (role !== "admin") return <Navigate to="/discover/music" replace />;
+    return <Outlet />;
+};
