@@ -7,14 +7,15 @@ import {
     Volume2,
     ListPlus,
     SkipBack,
+    VolumeX,
 } from "lucide-react";
 import { formatDuration } from "../helper/formatDutation";
 import AddToPlaylistModal from "../pages/playLists/components/AddToPlaylistModal";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 const PlayerBar = () => {
     const [showPlaylistModal, setShowPlaylistModal] = useState(false);
-
+    const previousVolumeRef = useRef(100);
     const {
         track,
         isPlaying,
@@ -30,6 +31,15 @@ const PlayerBar = () => {
     if (!track) return null;
 
     const currentTime = track.duration ? (progress / 100) * track.duration : 0;
+
+    const volumeToggleHandler = () => {
+        if (volume > 0) {
+            previousVolumeRef.current = volume;
+            setVolume(0);
+        } else {
+            setVolume(previousVolumeRef.current);
+        }
+    };
 
     return (
         <>
@@ -94,7 +104,7 @@ const PlayerBar = () => {
             </div>
 
             {/* Desktop / tablet player bar */}
-            <div className="hidden md:flex fixed bottom-0 left-0 right-0 z-50 bg-neutral-900/70 backdrop-blur-2xl border-t border-neutral-800 px-4 py-1 items-center gap-4 lg:gap-8">
+            <div className="hidden md:flex fixed bottom-0 left-0 right-0 z-80 bg-neutral-900/70 backdrop-blur-2xl border-t border-neutral-800 px-4 py-1 items-center gap-4 lg:gap-8">
                 <div className="flex items-center gap-4 w-44 lg:w-56 xl:w-64 shrink-0 min-w-0">
                     <img
                         src={track.cover_url}
@@ -157,8 +167,15 @@ const PlayerBar = () => {
 
                 <div className="relative flex justify-end items-center gap-x-3 w-20 shrink-0">
                     <div className="group relative pt-1">
-                        <button className="cursor-pointer text-white">
-                            <Volume2 size={16} />
+                        <button
+                            onClick={volumeToggleHandler}
+                            className="cursor-pointer text-white"
+                        >
+                            {volume === 0 ? (
+                                <VolumeX size={16} />
+                            ) : (
+                                <Volume2 size={16} />
+                            )}
                         </button>
                         <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                             <input
