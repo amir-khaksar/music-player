@@ -1,4 +1,5 @@
 const supabase = require("../lib/supabase");
+const supabaseAdmin = require("../lib/supabaseAdmin");
 
 exports.getAll = async (req, res) => {
     try {
@@ -67,7 +68,7 @@ exports.createSong = async (req, res) => {
     try {
         const { title, artist, audio_url, cover_url, duration } = req.body;
 
-        const { data, error } = await supabase
+        const { data, error } = await supabaseAdmin
             .from("songs")
             .insert({
                 title,
@@ -83,6 +84,7 @@ exports.createSong = async (req, res) => {
 
         res.status(201).json(data);
     } catch (err) {
+        console.log(err);
         res.status(500).json({
             message: err.message,
         });
@@ -115,7 +117,7 @@ exports.uploadOne = async (req, res) => {
 exports.deleteOne = async (req, res) => {
     const { id } = req.params;
 
-    const { error } = await supabase.from("songs").delete().eq("id", id);
+    const { error } = await supabaseAdmin.from("songs").delete().eq("id", id);
 
     if (error) {
         return res.status(500).json(error);
