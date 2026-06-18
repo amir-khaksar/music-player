@@ -31,7 +31,6 @@ const fetchRole = async (userId: string) => {
         console.error("error:", error.message);
         return null;
     }
-    console.log(data);
     return data?.role ?? null;
 };
 

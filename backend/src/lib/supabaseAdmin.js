@@ -1,4 +1,3 @@
-// lib/supabaseAdmin.js
 const { createClient } = require("@supabase/supabase-js");
 
 const supabaseAdmin = createClient(
