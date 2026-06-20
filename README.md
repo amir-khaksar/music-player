@@ -4,6 +4,10 @@ A full-stack music streaming application built with React, TypeScript, Node.js, 
 
 Users can browse songs, play music, like tracks, create playlists, and manage their personal music library. Administrators can upload new songs and manage the music catalog through a dedicated admin panel.
 
+## 🌐 Live Demo
+
+🔗 **https://music-player-ten-lime.vercel.app/**
+
 ---
 
 ## ✨ Features
@@ -19,7 +23,7 @@ Users can browse songs, play music, like tracks, create playlists, and manage th
 - Browse all songs
 - Song details page
 - Pagination support
-- Search-friendly UI
+- Responsive UI
 
 ### Music Player
 
@@ -46,6 +50,7 @@ Users can browse songs, play music, like tracks, create playlists, and manage th
 
 - Upload MP3 files
 - Create songs
+- Delete songs
 - Manage music catalog
 
 ### Storage
@@ -92,24 +97,29 @@ music-player/
 │
 ├── frontend/
 │   └── project/
-│       ├── src/
-│       │   ├── components/
-│       │   ├── contexts/
-│       │   ├── layout/
-│       │   ├── pages/
-│       │   ├── providers/
-│       │   ├── store/
-│       │   └── lib/
+│       ├── public/
+│       │   └── screenshots/
+│       │
+│       └── src/
+│           ├── components/
+│           ├── contexts/
+│           ├── hooks/
+│           ├── layout/
+│           ├── lib/
+│           ├── pages/
+│           ├── providers/
+│           ├── routes/
+│           ├── store/
+│           └── types/
 │
 ├── backend/
-│   ├── src/
-│   │   ├── controllers/
-│   │   ├── middlewares/
-│   │   ├── routes/
-│   │   ├── configs/
-│   │   └── lib/
-│   │
-│   └── api/
+│   ├── api/
+│   └── src/
+│       ├── configs/
+│       ├── controllers/
+│       ├── lib/
+│       ├── middlewares/
+│       └── routes/
 │
 └── README.md
 ```
@@ -122,6 +132,7 @@ music-player/
 
 ```bash
 git clone https://github.com/amir-khaksar/music-player.git
+
 cd music-player
 ```
 
@@ -133,6 +144,7 @@ cd music-player
 cd frontend/project
 
 npm install
+
 npm run dev
 ```
 
@@ -150,6 +162,7 @@ http://localhost:5173
 cd backend
 
 npm install
+
 npm run dev
 ```
 
@@ -165,7 +178,7 @@ http://localhost:3000
 
 ### Frontend
 
-Create `.env`:
+Create a `.env` file inside the frontend directory:
 
 ```env
 VITE_SUPABASE_URL=
@@ -175,7 +188,7 @@ VITE_API_URL=
 
 ### Backend
 
-Create `.env`:
+Create a `.env` file inside the backend directory:
 
 ```env
 SUPABASE_URL=
@@ -185,7 +198,7 @@ SUPABASE_ANON_KEY=
 
 ---
 
-## API Overview
+## 📡 API Overview
 
 ### Songs
 
@@ -234,14 +247,30 @@ DELETE /api/playlists/:playlistId/songs/:songId
 - Album pages
 - Upload cover images
 - Audio waveform visualization
+- Drag & Drop playlist sorting
+- User profile page
 
 ---
 
 ## 📸 Screenshots
 
-![Home](./frontend//project//public/screenshots/home.png)
-![Song Detail](./frontend//project//public/screenshots/song-detail.png)
-![Playlist](./frontend//project//public/screenshots/playlist.png)
+### Home
+
+![Home](./frontend/project/public/screenshots/home.png)
+
+### Song Detail
+
+![Song Detail](./frontend/project/public/screenshots/song-detail.png)
+
+### Playlist
+
+![Playlist](./frontend/project/public/screenshots/playlist.png)
+
+---
+
+## 🌐 Live Application
+
+https://music-player-ten-lime.vercel.app/
 
 ---
 
