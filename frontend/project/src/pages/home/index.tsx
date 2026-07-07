@@ -4,7 +4,7 @@ import PlayerBar from "../../layout/PlayerBar";
 import { Outlet } from "react-router-dom";
 import { useState } from "react";
 
-export default function index() {
+export default function Index() {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
     return (
