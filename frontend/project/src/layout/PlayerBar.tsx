@@ -69,7 +69,10 @@ const PlayerBar = () => {
             <div className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-neutral-900/70 backdrop-blur-2xl border-t border-neutral-800">
                 <ProgressBar value={progress} onChange={handleProgressChange} />
                 <div className="flex items-center justify-between gap-3 px-3 pt-2 pb-[calc(0.5rem+env(safe-area-inset-bottom))]">
-                    <div className="flex items-center gap-3 min-w-0 flex-1">
+                    <div
+                        onClick={() => navigate(`/discover/music/${track?.id}`)}
+                        className="flex items-center gap-3 min-w-0 flex-1"
+                    >
                         <img
                             src={track.cover_url}
                             alt={track.title}
@@ -120,7 +123,10 @@ const PlayerBar = () => {
 
             {/* Desktop / tablet player bar */}
             <div className="hidden md:flex fixed bottom-0 left-0 right-0 z-80 bg-neutral-900/70 backdrop-blur-2xl border-t border-neutral-800 px-4 py-1 items-center gap-4 lg:gap-8">
-                <div className="flex items-center gap-4 w-44 lg:w-56 xl:w-64 shrink-0 min-w-0">
+                <div
+                    onClick={() => navigate(`/discover/music/${track?.id}`)}
+                    className="flex items-center gap-4 w-44 lg:w-56 xl:w-64 shrink-0 min-w-0 cursor-pointer"
+                >
                     <img
                         src={track.cover_url}
                         alt={track.title}
