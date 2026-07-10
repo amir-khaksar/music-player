@@ -1,3 +1,4 @@
+import { useNavigate, useLocation } from "react-router-dom";
 import ProgressBar from "../components/ProgressBar";
 import { usePlayer } from "../contexts/playerContext";
 import {
@@ -11,11 +12,15 @@ import {
 } from "lucide-react";
 import { formatDuration } from "../helper/formatDutation";
 import AddToPlaylistModal from "../pages/playLists/components/AddToPlaylistModal";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 const PlayerBar = () => {
     const [showPlaylistModal, setShowPlaylistModal] = useState(false);
     const previousVolumeRef = useRef(100);
+
+    const navigate = useNavigate();
+    const location = useLocation();
+
     const {
         track,
         isPlaying,
@@ -29,6 +34,14 @@ const PlayerBar = () => {
     } = usePlayer();
 
     if (!track) return null;
+
+    useEffect(() => {
+        if (track && location.pathname.startsWith("/discover/music/")) {
+            navigate(`/discover/music/${track.id}`, {
+                replace: true,
+            });
+        }
+    }, [track?.id]);
 
     const currentTime = track.duration ? (progress / 100) * track.duration : 0;
 
