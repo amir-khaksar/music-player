@@ -33,15 +33,17 @@ const PlayerBar = () => {
         handleProgressChange,
     } = usePlayer();
 
-    if (!track) return null;
-
     useEffect(() => {
-        if (track && location.pathname.startsWith("/discover/music/")) {
+        if (!track) return;
+
+        if (location.pathname.startsWith("/discover/music/")) {
             navigate(`/discover/music/${track.id}`, {
                 replace: true,
             });
         }
-    }, [track?.id]);
+    }, [track, location.pathname, navigate]);
+
+    if (!track) return null;
 
     const currentTime = track.duration ? (progress / 100) * track.duration : 0;
 
