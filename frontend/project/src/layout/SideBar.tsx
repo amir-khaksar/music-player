@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { useGetPlaylists } from "../pages/playLists/hooks/useGetPlaylists";
 import PlaylistSidebarLoading from "../components/PlaylistSidebarLoading";
+import TetrioTag from "../components/TetrioTag";
 import { X } from "lucide-react";
 
 interface Props {
@@ -78,6 +79,14 @@ const Sidebar = ({ isOpen, onClose }: Props) => {
                             ))
                         )}
                     </div>
+                </div>
+
+                {/* Team Tag */}
+                <div
+                    onClick={(e) => e.stopPropagation()}
+                    className="mt-4 shrink-0 border-t border-neutral-800 pt-4 flex justify-center"
+                >
+                    <TetrioTag className="border border-[#34433F] bg-[#C5F467]/10 px-2 py-1" />
                 </div>
             </aside>
         </>
